@@ -1,0 +1,13 @@
+a {
+    text-decoration: none;
+    color: white
+}
+
+p {
+    font-size: 18px;
+}
+
+
+.icon_hover:hover {
+    color: #198754 !important;
+}

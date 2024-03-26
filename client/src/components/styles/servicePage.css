@@ -1,0 +1,22 @@
+
+
+p {
+    font-size: 18px
+}
+
+.textSize {
+    font-size: 18px;
+}
+
+.pvtleft {
+    background-color: #edf3fe;
+    border-radius: 25px;
+    /* color: #006eff; */
+    cursor: pointer;
+}
+
+.pvtleft:hover {
+    color: white;
+    background-color: #003c6c;
+    transition: all ease 1s;
+}   

@@ -1,0 +1,25 @@
+.card1 {
+    transition: all ease 0.3s;
+}
+
+.card1:hover {
+    transform: scale(1.1);
+}
+
+.card2 {
+    transition: all ease 0.3s;
+}
+
+.card2:hover {
+    transform: scale(1.2);
+    background-color: #198754;
+    color: white;
+    z-index: 1;
+}
+
+.bg_orange {
+    background-color: rgb(254, 180, 68);
+}
+.text_orange {
+    color: rgb(254, 180, 68);
+}

@@ -1,0 +1,119 @@
+.h-80 {
+    height: 80px;
+}
+
+.banner_bg {
+    background-image: url('../images//signing-documents-business-woman-1500-50cont.png');
+    background-size: cover;
+    background-position: center;
+    height: 300px
+}
+
+.bg_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 66px;
+    color: white;
+    font-weight: 600;
+}
+
+.text_second {
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 29px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+
+}
+
+.f_30 {
+    font-size: 30px;
+}
+
+.f_600 {
+    font-weight: 600;
+}
+
+.w_48 {
+    width: 48%;
+}
+
+
+.cursor_p {
+    cursor: pointer;
+}
+
+.bg_color {
+    background-color: #198754  !important;
+}
+
+.text_workflow {
+    font-weight: 600;
+    font-size: 25px;
+    color: white;
+}
+
+.f_22 {
+    font-size: 22px;
+}
+
+.f_28 {
+    font-size: 28px;
+}
+
+.heading_main {
+    color: #198754;
+    font-size: 45px;
+    font-weight: 700;
+}
+
+.text_center {
+    display: flex;
+    justify-content: center;
+
+}
+
+.footer_a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer_p {
+    font-size: 18px;
+
+}
+
+.active_tab {
+    background-color: #198754 !important;
+}
+
+.border_color {
+    border-color: #198754 !important;
+}
+
+.text_green {
+    color: #198754 !important;
+}
+
+.button_hover:hover {
+    color: white !important;
+    background-color: #198754 !important;
+}
+
+.icon_hover:hover {
+    color: #198754 !important;
+    text-decoration: none;
+    /* border-color: #198754 !important; */
+
+
+}
+
+.header_active {
+
+    background: rgb(25, 135, 84);
+    border-radius: 14px;
+    color: white !important;
+    padding: 7px 12px 7px 12px !important;
+}
