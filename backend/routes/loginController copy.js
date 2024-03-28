@@ -2,14 +2,15 @@
 const express = require('express')
 const app = express()
 const cors = require('cors');
-// const LoginModal = require('../model/loginModal');
-const Product = require('../model/Product');
-
 const Aws = require('aws-sdk');
 const multer = require('multer');
+
+const LoginModal = require('../model/loginModal');
 app.use(cors())
+require('dotenv/config');
 
 const router = express.Router();
+
 const storage = multer.memoryStorage({
     destination: function (req, file, cb) {
         cb(null, '');
@@ -23,57 +24,6 @@ const s3 = new Aws.S3({
     secretAccessKey: process.env.AWS_ACCESS_KEY_SECRET
 });
 
-router.post('/addDocuments', upload.single('productimage'),async (req, res) => {
-    const params = {
-        Bucket: process.env.AWS_BUCKET_NAME,
-        Key: req.file.originalname,
-        Body: req.file.buffer,
-        ContentType: 'image/jpeg'
-    };
-    s3.upload(params, (error, data) => {
-        if (error) {
-            res.status(500).send({ "err": error });
-        } else {
-            const product = new Product({
-                name: req.body.name,
-                productImage: data.Location
-            });
-            product.save()
-                .then(result => {
-                    res.status(200).send({
-                        _id: result._id,
-                        name: result.name,
-                        productImage: data.Location
-                    });
-                })
-                .catch(err => {
-                    res.status(500).send({ message: err });
-                });
-        }
-    });
-});
-// router.post('/addDocuments', async (req, res) => {
-//     const { image, name, id } = req.body;
-
-//     try {
-//         const existingData = await LoginModal.findById(id);
-
-//         if (!existingData) {
-//             return res.status(404).json({ error: 'User not found' });
-//         }
-
-//         // Add new document to the documents array
-//         existingData.documents.push({ image, name });
-
-//         // Save the updated user document
-//         await existingData.save();
-
-//         res.status(200).json({ message: 'Documents updated successfully', user: existingData });
-//     } catch (error) {
-//         console.error('Error updating documents:', error);
-//         res.status(500).json({ error: 'Failed to update documents' });
-//     }
-// });
 
 router.post('/createAccount', async (req, res) => {
     const { email, name, number, password } = req.body;
@@ -191,6 +141,62 @@ router.post('/getuser', async (req, res) => {
     }
 });
 
+router.post('/addDocuments', upload.single('productimage'),async (req, res) => {
+
+    const params = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: req.file.originalname,
+        Body: req.file.buffer,
+        ContentType: 'image/jpeg'
+    };
+    s3.upload(params, (error, data) => {
+        if (error) {
+            res.status(500).send({ "err": error });
+        } else {
+            const product = new Product({
+                name: req.body.name,
+                price: req.body.price,
+                productImage: data.Location
+            });
+            product.save()
+                .then(result => {
+                    res.status(200).send({
+                        _id: result._id,
+                        name: result.name,
+                        price: result.price,
+                        productImage: data.Location
+                    });
+                })
+                .catch(err => {
+                    res.status(500).send({ message: err });
+                });
+        }
+    });
+    // ============
+    // console.log("sssssss");
+    // const { name, id } = req.body;
+    // console.log(req.body)
+    // return
+
+    // try {
+    //     const existingData = await LoginModal.findById(id);
+
+    //     if (!existingData) {
+    //         return res.status(404).json({ error: 'User not found' });
+    //     }
+
+    //     // Add new document to the documents array
+    //     existingData.documents.push({ image, name });
+
+    //     // Save the updated user document
+    //     await existingData.save();
+
+    //     res.status(200).json({ message: 'Documents updated successfully', user: existingData });
+    // } catch (error) {
+    //     console.error('Error updating documents:', error);
+    //     res.status(500).json({ error: 'Failed to update documents' });
+    // }
+});
 
 router.post('/deleteDocument', async (req, res) => {
     const { userId, docId } = req.body;
